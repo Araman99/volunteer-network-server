@@ -27,8 +27,8 @@ app.get('/user/:id',(req,res) =>{
 
 const client = new MongoClient(uri, { useNewUrlParser: true,  useUnifiedTopology: true  });
 client.connect(err => {
-  const collection = client.db("volunteerNetwork").collection("volunteerTask");
-  const registered = client.db("volunteerNetwork").collection("registerVolunteer")
+  const collection = client.db(`${process.env.DB_PASS}`).collection("volunteerTask");
+  const registered = client.db(`${process.env.DB_PASS}`).collection("registerVolunteer")
   
   app.get('/task', (req,res)=>{
     collection.find({}).limit(20)
@@ -78,6 +78,6 @@ client.connect(err => {
 });
 
 const port = 5000;
-app.listen(proocess.env.PORT ||port, () => {
+app.listen(process.env.PORT ||port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
