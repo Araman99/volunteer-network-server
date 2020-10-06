@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const ObjectID = require('mongodb').ObjectID;
 
 
-const uri = "mongodb+srv://DB_USER:DB_PASS@cluster0.u2cqf.mongodb.net/DB_NAME?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.u2cqf.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 const app = express();
 
@@ -77,7 +77,7 @@ client.connect(err => {
   
 });
 
-const port = 5000
-app.listen(port, () => {
+const port = 5000;
+app.listen(proocess.env.PORT ||port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
